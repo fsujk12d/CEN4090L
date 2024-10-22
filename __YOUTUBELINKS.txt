@@ -1,3 +1,11 @@
+Overview of Android Studio - Features, Basic layout of Android Program
 https://youtu.be/Pjp8-ynDtas
 
+Basics of adding Widgets, Listeners
 https://youtu.be/gE6I4QTUUd8
+
+TicTacToe Example - how to get the games working
+https://youtu.be/7MqJRnT-phA
+
+WiFi Direct implementation overview
+https://youtu.be/O40f7Zfu9G0
