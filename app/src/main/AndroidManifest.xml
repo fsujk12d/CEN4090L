@@ -19,6 +19,12 @@
         android:theme="@style/Theme.Mobilympics"
         tools:targetApi="31">
         <activity
+            android:name=".CheckersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChessActivity"
+            android:exported="false" />
+        <activity
             android:name=".DotsNBoxesActivity"
             android:exported="false" />
         <activity
