@@ -10,10 +10,55 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="LogoImage Goes Here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50sp"
+        android:id="@+id/mobilympics_logo_main_menu"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/host_game_button_main_menu"
+        app:layout_constraintTop_toBottomOf="@id/mobilympics_logo_main_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50sp"
+        android:text="@string/host_a_game"
+        android:onClick="OnHostGameClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/find_game_button_main_menu"
+        app:layout_constraintTop_toBottomOf="@id/host_game_button_main_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50sp"
+        android:text="@string/find_a_game"
+        android:onClick="onFindGameClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/leaderboard_button_main_menu"
+        app:layout_constraintTop_toBottomOf="@id/find_game_button_main_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50sp"
+        android:text="@string/leaderboard"
+        android:onClick="OnLeaderboardClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/options_button_main_menu"
+        app:layout_constraintTop_toBottomOf="@id/leaderboard_button_main_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50sp"
+        android:text="@string/options"
+        android:onClick="OnOptionsClick"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

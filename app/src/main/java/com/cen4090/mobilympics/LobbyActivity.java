@@ -1,6 +1,7 @@
 package com.cen4090.mobilympics;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class LobbyActivity extends AppCompatActivity {
 
+    public ListView playerList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +26,10 @@ public class LobbyActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        playerList = (ListView) findViewById(R.id.player_list_lobby);
+        //TODO - Populate List from ArrayList of Players, update when players join or leave
+
+
     }
 }
