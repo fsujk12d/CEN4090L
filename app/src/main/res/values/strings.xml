@@ -6,4 +6,8 @@
     <string name="options">Options</string>
     <string name="host_s_lobby">(Host)\'s\nLobby</string>
     <string name="game_options">Game Options</string>
+    <string name="x_turn">X\'s Turn</string>
+    <string name="o_turn">O\'s Turn</string>
+    <string name="ttt_winner_message">Winner Message</string>
+    <string name="ttt_play_again_button_text">Play Again?</string>
 </resources>
