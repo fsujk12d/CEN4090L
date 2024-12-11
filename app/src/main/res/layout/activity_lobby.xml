@@ -19,35 +19,59 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50sp"/>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/selected_game_cardview"
+        android:orientation="horizontal"
+        android:id="@+id/lobby_buttons"
         app:layout_constraintTop_toBottomOf="@id/lobby_owner_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20sp">
+        android:gravity="center">
 
-        <!--TODO - Add image view and text view showing current selected game-->
-    </androidx.cardview.widget.CardView>
+        <Button
+            android:layout_width="110sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/discover_button"
+            android:text="@string/discover"
+            android:layout_marginEnd="25sp"/>
+
+        <Button
+            android:layout_width="110sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/disconnect_button"
+            android:text="Disconnect"/>
+
+        <Button
+            android:layout_width="110sp"
+            android:layout_height="wrap_content"
+            android:id="@+id/select_game_button"
+            android:text="Select Game"
+            android:layout_marginStart="25sp"/>
+
+    </LinearLayout>
+
+
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/player_list_lobby"
-        app:layout_constraintTop_toBottomOf="@id/selected_game_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="250sp"
+        android:id="@+id/device_list"
+        app:layout_constraintTop_toBottomOf="@id/lobby_buttons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30sp"/>
+        android:layout_marginTop="25sp"
+        android:background="@color/darkGrey"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/game_options_button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/start_game_button"
+        android:text="Start Game"
+        app:layout_constraintTop_toBottomOf="@id/device_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="50sp"
-        android:text="@string/game_options"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

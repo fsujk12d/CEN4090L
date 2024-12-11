@@ -1,5 +1,6 @@
 package com.cen4090.mobilympics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,20 +24,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void OnHostGameClick(View view){
-        //TODO - Launch HostOptionsDialog
-    }
 
     public void onFindGameClick(View view){
-        //TODO - Launch FindOptionsDialog
+        //TODO - Launch LobbyActivity
+        Intent intent = new Intent(this, LobbyActivity.class);
+        startActivity(intent);
     }
 
     public void OnLeaderboardClick(View view){
         //TODO - Launch LeaderboardActivity
     }
 
-    public void OnOptionsClick(View view){
-        //TODO - Launch OptionsDialog
-        //TODO - NOTE: Use pre-built Preference Screen stuff from chapter 6.9 of the textbook
-    }
 }

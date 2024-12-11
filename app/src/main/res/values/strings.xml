@@ -10,4 +10,9 @@
     <string name="o_turn">O\'s Turn</string>
     <string name="ttt_winner_message">Winner Message</string>
     <string name="ttt_play_again_button_text">Play Again?</string>
+    <string name="invalid_move">Invalid Move! Try Again.</string>
+    <string name="x_wins">X Wins!</string>
+    <string name="o_wins">O Wins!</string>
+    <string name="cat_wins">No Winner :(</string>
+    <string name="discover">Discover</string>
 </resources>

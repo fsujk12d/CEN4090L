@@ -7,32 +7,40 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LogoImage Goes Here"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50sp"
-        android:id="@+id/mobilympics_logo_main_menu"/>
 
-    <Button
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/host_game_button_main_menu"
-        app:layout_constraintTop_toBottomOf="@id/mobilympics_logo_main_menu"
+        android:id="@+id/mobilympics_logo_main_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50sp"
-        android:text="@string/host_a_game"
-        android:onClick="OnHostGameClick"/>
+        android:layout_marginBottom="75sp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logo_img"
+            android:src="@drawable/ic_mobiliympics_logo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/app_name"
+            android:textSize="32sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="140sp"
+            android:textColor="@color/darkGrey"
+            android:textStyle="bold"/>
+    </FrameLayout>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/find_game_button_main_menu"
-        app:layout_constraintTop_toBottomOf="@id/host_game_button_main_menu"
+        app:layout_constraintTop_toBottomOf="@id/mobilympics_logo_main_menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50sp"
@@ -50,15 +58,5 @@
         android:text="@string/leaderboard"
         android:onClick="OnLeaderboardClick"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/options_button_main_menu"
-        app:layout_constraintTop_toBottomOf="@id/leaderboard_button_main_menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50sp"
-        android:text="@string/options"
-        android:onClick="OnOptionsClick"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
