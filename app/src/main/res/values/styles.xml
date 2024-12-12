@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DNB_dot">
+        <item name = "android:layout_width">20sp</item>
+        <item name = "android:layout_height">20sp</item>
+        <item name = "android:background">@drawable/circle_background</item>
+    </style>
+    <style name="DNB_horiz_bar">
+        <item name = "android:layout_width">35sp</item>
+        <item name = "android:layout_height">18sp</item>
+        <item name = "android:background">#808080</item>
+        <item name="backgroundTint">#808080</item>
+    </style>
+    <style name="DNB_vert_bar">
+        <item name = "android:layout_width">18sp</item>
+        <item name = "android:layout_height">35sp</item>
+        <item name = "android:background">#808080</item>
+        <item name="backgroundTint">#808080</item>
+    </style>
+    <style name="DNB_box">
+        <item name = "android:layout_width">45sp</item>
+        <item name = "android:layout_height">45sp</item>
+        <item name = "android:background">#D3D3D3</item>
+    </style>
+</resources>

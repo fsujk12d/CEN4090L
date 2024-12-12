@@ -15,4 +15,16 @@
     <string name="o_wins">O Wins!</string>
     <string name="cat_wins">No Winner :(</string>
     <string name="discover">Discover</string>
+    <string name="dots_n_boxes_title">Dots N Boxes</string>
+    <string name="DNB_welcome">Welcome to Dots N Boxes!</string>
+    <string name="DNB_r_your_turn">It\'s your turn (red) to play!</string>
+    <string name="DNB_b_your_turn">It\'s your turn (blue) to play!</string>
+    <string name="DNB_r_opp_turn">It\'s your opponent\'s turn (red) to play!</string>
+    <string name="DNB_b_opp_turn">It\'s your opponent\'s turn (blue) to play!</string>
+    <string name="DNB_rwin">Red wins!</string>
+    <string name="DNB_bwin">Blue wins!</string>
+    <string name="horiz">horiz</string>
+    <string name="vert">vert</string>
+    <string name="box">box</string>
+    <string name="DNB_tie">It\'s a tie!</string>
 </resources>
