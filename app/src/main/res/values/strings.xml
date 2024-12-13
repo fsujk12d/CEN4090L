@@ -2,7 +2,7 @@
     <string name="app_name">Mobilympics</string>
     <string name="host_a_game">Host A Game</string>
     <string name="find_a_game">Find A Game</string>
-    <string name="leaderboard">Leaderboard</string>
+    <string name="leaderboard">Leaderboard\nComing Soon!</string>
     <string name="options">Options</string>
     <string name="host_s_lobby">(Host)\'s\nLobby</string>
     <string name="game_options">Game Options</string>

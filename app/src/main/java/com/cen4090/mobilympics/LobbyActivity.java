@@ -47,6 +47,7 @@ public class LobbyActivity extends BaseGameActivity implements GameSelectDialog.
     private Button selectGameButton;
     private Button startGameButton;
     private String selectedGame = null;
+    private boolean isHost = false;
 
     private WifiP2pManager manager;
     private WifiP2pManager.Channel channel;
@@ -73,7 +74,9 @@ public class LobbyActivity extends BaseGameActivity implements GameSelectDialog.
         disconnectButton = findViewById(R.id.disconnect_button);
         listView = findViewById(R.id.device_list);
         selectGameButton = findViewById(R.id.select_game_button);
+        selectGameButton.setEnabled(false);
         startGameButton = findViewById(R.id.start_game_button);
+        startGameButton.setEnabled(false);
 
         /*-- Initialize WifiP2p Components --*/
         manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
@@ -145,11 +148,16 @@ public class LobbyActivity extends BaseGameActivity implements GameSelectDialog.
 
     @Override
     public void onGameSelected(String selectedGame) {
+        if (!isHost) {
+            return;
+        }
+
         this.selectedGame = selectedGame;
 
         startGameButton.setEnabled(true);
         final String btnText = "Selected: " + this.selectedGame ;
         selectGameButton.setText(btnText);
+        startGameButton.setEnabled(true);
     }
 
     public void launchSelectedGame(){
@@ -157,29 +165,11 @@ public class LobbyActivity extends BaseGameActivity implements GameSelectDialog.
             Toast.makeText(this, "Please select a game first!", Toast.LENGTH_SHORT).show();
         }
 
-        Intent intent = null;
-
-        switch (selectedGame){
-            case "TicTacToe":
-                intent = new Intent(this, TicTacToeActivity.class);
-                break;
-            case "Mancala":
-                intent = new Intent(this, MancalaActivity.class);
-                break;
-            case "Checkers":
-                intent = new Intent(this, CheckersActivity.class);
-                break;
-            case "Chess":
-                intent = new Intent(this, ChessActivity.class);
-                break;
-            case "DotsAndBoxes":
-                intent = new Intent(this, DotsNBoxesActivity.class);
-                break;
+        if (wifiService != null){
+            wifiService.sendData("START_GAME:" + selectedGame);
         }
 
-        if (intent != null){
-            startActivity(intent);
-        }
+        launchGame(selectedGame);
     }
 
     @SuppressLint("MissingPermission")
@@ -203,26 +193,39 @@ public class LobbyActivity extends BaseGameActivity implements GameSelectDialog.
         }
     }
 
-    private WifiP2pManager.ConnectionInfoListener connectionInfoListener = new WifiP2pManager.ConnectionInfoListener() {
+    public WifiP2pManager.ConnectionInfoListener connectionInfoListener = new WifiP2pManager.ConnectionInfoListener() {
         @Override
         public void onConnectionInfoAvailable(WifiP2pInfo info) {
+            if (info == null){
+                Toast.makeText(getApplicationContext(), "Connection Info is null", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             final InetAddress groupOwnerAddress = info.groupOwnerAddress;
 
             if (info.groupFormed){
-                if (wifiService != null){
-                    if (info.isGroupOwner){
+                isHost = info.isGroupOwner;
+                if (isHost){
+                    runOnUiThread(() -> {
+                        selectGameButton.setEnabled(true);
+                        Toast.makeText(getApplicationContext(), "You are the host - select a game", Toast.LENGTH_SHORT).show();
+                    });
+                    if (wifiService != null){
                         wifiService.setupAsHost();
-                        //TODO - maybe save host/client role info in SharedPreferences????
-                        Toast.makeText(getApplicationContext(), "Connected as Host", Toast.LENGTH_SHORT).show();
-                    } else {
-                        wifiService.setupAsClient(groupOwnerAddress);
-                        Toast.makeText(getApplicationContext(), "Connected as Client", Toast.LENGTH_SHORT).show();
                     }
-
-                    //TODO - Once connected, maybe we enable the select and start game buttons?
+                } else {
+                    if (groupOwnerAddress == null){
+                        Toast.makeText(getApplicationContext(), "Group owner address is null", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    runOnUiThread(() -> {
+                        Toast.makeText(getApplicationContext(), "You are a client", Toast.LENGTH_SHORT).show();
+                    });
+                    if (wifiService != null){
+                        wifiService.setupAsClient(groupOwnerAddress);
+                    }
                 }
             }
-
         }
     };
 
@@ -287,7 +290,40 @@ public class LobbyActivity extends BaseGameActivity implements GameSelectDialog.
     }
 
     protected void onGameDataReceived(String data) {
-        Toast.makeText(this, "Received: " + data, Toast.LENGTH_SHORT).show();
+
+        if (data.startsWith("START_GAME:")) {
+            String gameName = data.substring(11);
+            launchGame(gameName);
+        } else {
+            Toast.makeText(this, "Received: " + data, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void launchGame(String gameName){
+        Intent intent = null;
+
+        switch (gameName){
+            case "TicTacToe":
+                intent = new Intent(this, TicTacToeActivity.class);
+                break;
+            case "Mancala":
+                intent = new Intent(this, MancalaActivity.class);
+                break;
+            case "Checkers":
+                intent = new Intent(this, CheckersActivity.class);
+                break;
+            case "Chess":
+                intent = new Intent(this, ChessActivity.class);
+                break;
+            case "DotsAndBoxes":
+                intent = new Intent(this, DotsNBoxesActivity.class);
+                break;
+        }
+
+        if (intent != null){
+            intent.putExtra("isHost", isHost);
+            startActivity(intent);
+        }
     }
 
     @Override

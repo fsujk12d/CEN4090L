@@ -34,5 +34,4 @@ public class MainActivity extends AppCompatActivity {
     public void OnLeaderboardClick(View view){
         //TODO - Launch LeaderboardActivity
     }
-
 }

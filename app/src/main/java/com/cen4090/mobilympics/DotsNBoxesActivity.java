@@ -28,6 +28,7 @@ public class DotsNBoxesActivity extends BaseGameActivity {
     private int currentTurn = 1;
     private int winner = 0;
     private boolean boardLocked = false;
+    Button replayButton;
     private String getGameState(){
         StringBuilder data = new StringBuilder();
         for(int i = 0; i < 6; i++){
@@ -95,11 +96,36 @@ public class DotsNBoxesActivity extends BaseGameActivity {
         }
         updateBoard();
     }
+    private void ResetGame(){
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j <= 6; j++){
+                vertBarsStates[i][j] = 0;
+            }
+        }
+        for(int i = 0; i <= 6; i++){
+            for(int j = 0; j < 6; j++){
+                horizBarsStates[i][j] = 0;
+            }
+        }
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 6; j++){
+                boxStates[i][j] = 0;
+            }
+        }
+        if(winner != 0){
+            currentTurn = (winner * 2) % 3;
+            winner = 0;
+        }else{
+            changeTurns();
+        }
+        updateBoard();
+        replayButton.setVisibility(View.INVISIBLE);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_dots_nboxes);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -116,7 +142,8 @@ public class DotsNBoxesActivity extends BaseGameActivity {
             for(int j = 0; j <= 6; j++){
                 String name = "vert_bar_" + i + "_" + j;
                 int id = getResources().getIdentifier(name, "id", getPackageName());
-                vertBars[i][j] = ((Button)findViewById(id));
+
+                vertBars[i][j] = (Button) findViewById(id);;
                 int finalI = i;
                 int finalJ = j;
                 vertBars[i][j].setOnClickListener(new View.OnClickListener() {
@@ -151,10 +178,21 @@ public class DotsNBoxesActivity extends BaseGameActivity {
                 boxes[i][j] = ((View)findViewById(id));
             }
         }
+        replayButton = findViewById(R.id.dnb_replay_button);
+        replayButton.setOnClickListener(v -> {
+            if (wifiService != null){
+                ResetGame();
+                wifiService.sendData("RESTART");
+            }
+        });
         updateBoard();
     }
     @Override
     protected void onGameDataReceived(String data){
+        if(data.startsWith("RESTART")){
+            ResetGame();
+            return;
+        }
         int i = Integer.parseInt(data.substring(0, 1));
         int j = Integer.parseInt(data.substring(1, 2));
         boolean horizontal;
@@ -362,10 +400,13 @@ public class DotsNBoxesActivity extends BaseGameActivity {
         }
         if(winner == 3){
             tIndicator.setText(R.string.DNB_tie);
+            replayButton.setVisibility(View.VISIBLE);
         }else if(winner == 2){
             tIndicator.setText(R.string.DNB_bwin);
+            replayButton.setVisibility(View.VISIBLE);
         }else if(winner == 1){
             tIndicator.setText(R.string.DNB_rwin);
+            replayButton.setVisibility(View.VISIBLE);
         }else{
             if(currentTurn == 2){
                 tIndicator.setTextColor(ContextCompat.getColor(this, R.color.DNB_bar_blue));

@@ -44,28 +44,21 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 //activity.setIsWifiP2pEnabled(false);
             }
         } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
-            /*if (manager != null) {
+            if (manager != null) {
                 manager.requestPeers(channel, activity.peerListListener);
-            }*/
+            }
         } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
             // Respond to new connection or disconnections
             if (manager == null) {
                 return;
             }
 
-            if(manager == null){
-                return;
-            }
-
             ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
 
-            /*if (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+            if (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
                 manager.requestConnectionInfo(channel, activity.connectionInfoListener);
-            } else {
-                activity.discoverButton.setEnabled(true);
-                activity.helloWorldText.setText("Disconnected");
-            }*/
+            }
         } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
             // Respond to this device's wifi state changing
             Log.d(TAG, "This device changed");

@@ -1250,4 +1250,16 @@
         app:layout_constraintTop_toTopOf="@id/dot_6_5"
         app:layout_constraintStart_toEndOf="@id/dot_6_5"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dnb_replay_button"
+        app:layout_constraintTop_toBottomOf="@id/dot_6_3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25sp"
+        android:text="@string/ttt_play_again_button_text"
+        android:visibility="invisible"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
