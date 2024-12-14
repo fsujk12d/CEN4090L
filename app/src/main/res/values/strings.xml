@@ -27,4 +27,6 @@
     <string name="vert">vert</string>
     <string name="box">box</string>
     <string name="DNB_tie">It\'s a tie!</string>
+    <string name="checkers_title">Checkers</string>
+    <string name="checkers_welcome">Welcome to Checkers!</string>
 </resources>
